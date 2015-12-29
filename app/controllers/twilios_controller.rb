@@ -6,7 +6,7 @@ class TwiliosController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def jabberwocky
-    response_object do |r|
+    response do |r|
       r.Say verse, voice: 'alice', language: 'en-AU'
       r.Play 'http://linode.rabasa.com/cantina.mp3'
     end
@@ -15,7 +15,7 @@ class TwiliosController < ApplicationController
   end
 
   def beethoven
-    response_object do |r|
+    response do |r|
       r.Say 'Hören Sie sich einige verdammt Beethoven', voice: 'alice', language: 'de-DE'
       r.Play random_beethoven_url
     end
@@ -25,7 +25,7 @@ class TwiliosController < ApplicationController
 
   private
 
-  def response_object
+  def response
     @response_object ||= Twilio::TwiML::Response.new
   end
 
