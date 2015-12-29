@@ -62,6 +62,6 @@ class TwiliosController < ApplicationController
       http://www.amclassical.com/mp3/amclassical_moonlight_sonata_movement_1.mp3
       http://www.amclassical.com/mp3/amclassical_moonlight_sonata_movement_2.mp3
       http://www.amclassical.com/mp3/amclassical_pathetique_sonata_movement_2.mp3
-    )
+    ).sample
   end
 end
