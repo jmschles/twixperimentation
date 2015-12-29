@@ -26,7 +26,7 @@ class TwiliosController < ApplicationController
   private
 
   def response_object
-    @response_object ||= Twilio.TwiML::Response.new
+    @response_object ||= Twilio::TwiML::Response.new
   end
 
   def verse
