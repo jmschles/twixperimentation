@@ -1,4 +1,7 @@
 class PhoneCallsController < ApplicationController
+  TIME_LIMIT = 3600
+  EARLY_OPEN = 300
+
   include Webhookable
 
   after_filter :set_header, except: :save_recording
@@ -19,7 +22,7 @@ class PhoneCallsController < ApplicationController
 
     response = Twilio::TwiML::Response.new do |rsp|
       if phone_call.present?
-        rsp.Dial do
+        rsp.Dial dial_options(phone_call) do
           rsp.Conference phone_call.pin, conference_options(phone_call)
         end
       else
@@ -103,7 +106,7 @@ class PhoneCallsController < ApplicationController
   def in_call_window?(phone_call)
     return false unless phone_call.status == 'scheduled'
     call_time = phone_call.scheduled_time
-    Time.current.between?(call_time - 15.minutes, call_time + 1.hour)
+    Time.current.between?(EARLY_OPEN.seconds, call_time + TIME_LIMIT.seconds)
   end
 
   def verse
