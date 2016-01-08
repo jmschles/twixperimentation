@@ -83,7 +83,7 @@ class PhoneCallsController < ApplicationController
   end
 
   def in_call_window?(phone_call)
-    return false unless phone_call.status == :scheduled
+    return false unless phone_call.status == 'scheduled'
     call_time = phone_call.scheduled_time
     Time.current.between?(call_time - 15.minutes, call_time + 1.hour)
   end
