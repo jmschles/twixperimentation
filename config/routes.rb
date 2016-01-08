@@ -1,7 +1,11 @@
 TwilioTest::Application.routes.draw do
   root to: 'root#root'
-  resource :twilio, only: [] do
+  resources :phone_calls, only: [] do
     post :jabberwocky
-    post :beethoven
+
+    post :fallback, on: :collection
+    post :connect, on: :collection
+    post :fetch_pin, on: :collection
+    post :save_recording, on: :member
   end
 end

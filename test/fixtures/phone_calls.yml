@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  scheduled_time: 2016-01-07 16:56:30
+  pin: MyString
+  status: 
+  recording_url: MyString
+
+two:
+  scheduled_time: 2016-01-07 16:56:30
+  pin: MyString
+  status: 
+  recording_url: MyString
