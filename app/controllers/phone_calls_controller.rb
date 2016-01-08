@@ -51,9 +51,20 @@ class PhoneCallsController < ApplicationController
     render_twiml response
   end
 
+  def save_outcome
+    phone_call = PhoneCall.find(params[:id])
+    phone_call.update(outcome: params.require(:DialCallStatus), status: :completed)
+
+    response = Twilio::TwiML::Response.new do |rsp|
+      rsp.Say 'Goodbye!', voice: 'alice'
+    end
+
+    render_twiml response
+  end
+
   def save_recording
     phone_call = PhoneCall.find(params[:id])
-    phone_call.update_attribute(recording_url: params.require(:RecordingUrl))
+    phone_call.update(recording_url: params.require(:RecordingUrl))
     render json: {}, status: :ok
   end
 
@@ -65,6 +76,13 @@ class PhoneCallsController < ApplicationController
       finishOnKey: '*',
       timeout: 15 ,
       action: '/phone_calls/connect'
+    }
+  end
+
+  def dial_options(phone_call)
+    {
+      timeLimit: TIME_LIMIT,
+      action: "/public/v1/phone_calls/#{ phone_call.id }/save_outcome"
     }
   end
 
