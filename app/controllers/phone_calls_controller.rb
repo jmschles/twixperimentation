@@ -106,7 +106,7 @@ class PhoneCallsController < ApplicationController
   def in_call_window?(phone_call)
     return false unless phone_call.status == 'scheduled'
     call_time = phone_call.scheduled_time
-    Time.current.between?(EARLY_OPEN.seconds, call_time + TIME_LIMIT.seconds)
+    Time.current.between?(call_time - EARLY_OPEN.seconds, call_time + TIME_LIMIT.seconds)
   end
 
   def verse
