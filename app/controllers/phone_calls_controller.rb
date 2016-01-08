@@ -85,7 +85,7 @@ class PhoneCallsController < ApplicationController
   def dial_options(phone_call)
     {
       timeLimit: TIME_LIMIT,
-      action: "/public/v1/phone_calls/#{ phone_call.id }/save_outcome"
+      action: save_outcome_phone_call_path(phone_call)
     }
   end
 
@@ -93,7 +93,7 @@ class PhoneCallsController < ApplicationController
     {
       waitUrl: 'http://twimlets.com/holdmusic?Bucket=com.twilio.music.guitars',
       record: 'record-from-start',
-      eventCallbackUrl: "/phone_calls/#{ phone_call.id }/save_recording"
+      eventCallbackUrl: save_recording_phone_call_path(phone_call)
     }
   end
 
