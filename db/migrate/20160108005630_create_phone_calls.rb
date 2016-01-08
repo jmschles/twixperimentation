@@ -1,7 +1,7 @@
 class CreatePhoneCalls < ActiveRecord::Migration
   def change
     create_table :phone_calls do |t|
-      t.time :scheduled_time
+      t.datetime :scheduled_time
       t.string :pin
       t.string :status
       t.string :recording_url

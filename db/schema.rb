@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20160108005630) do
   enable_extension "plpgsql"
 
   create_table "phone_calls", force: :cascade do |t|
-    t.time     "scheduled_time"
+    t.datetime "scheduled_time"
     t.string   "pin"
     t.string   "status"
     t.string   "recording_url"
