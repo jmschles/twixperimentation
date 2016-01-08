@@ -53,7 +53,7 @@ class PhoneCallsController < ApplicationController
 
   def save_recording
     phone_call = PhoneCall.find(params[:id])
-    phone_call.set(recording_url: params.require(:RecordingUrl))
+    phone_call.update_attribute(recording_url: params.require(:RecordingUrl))
     render json: {}, status: :ok
   end
 
