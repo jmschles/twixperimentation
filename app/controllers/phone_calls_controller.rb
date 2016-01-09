@@ -39,6 +39,9 @@ class PhoneCallsController < ApplicationController
       rsp.Gather fetch_pin_options do
         rsp.Say 'Please enter your 8-digit pin and then press star.', voice: 'alice'
       end
+      rsp.Gather fetch_pin_options do
+        rsp.Say 'Sorry, I didn\'t catch that. Please enter your 8-digit pin and then press star.', voice: 'alice'
+      end
       rsp.Say 'No response detected. Please call back to try again.', voice: 'alice'
     end
 
